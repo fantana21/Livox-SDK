@@ -10,11 +10,15 @@ set(livox_sdk_INSTALL_INCLUDEDIR "${CMAKE_INSTALL_INCLUDEDIR}/${package}")
 # Set the install directory for the *config.cmake files to the path where vcpkg looks by default
 set(livox_sdk_INSTALL_CMAKEDIR "share/${package}")
 
-# Install target types to the given destinations and create an export.
+# Install target types to the given destinations and create an export. Also, set the exported
+# target's include directories to CMAKE_INSTALL_INCLUDEDIR so that the headers must be prefixed with
+# the package name. Example: #include <livox-sdk/livox_def.h>, instead of just #include
+# <livox_def.h>.
 install(TARGETS ${SDK_LIBRARY} EXPORT livox-sdkTargets
     ARCHIVE DESTINATION "${livox_sdk_INSTALL_LIBDIR}"
     LIBRARY DESTINATION "${livox_sdk_INSTALL_LIBDIR}"
-    PUBLIC_HEADER DESTINATION "${livox_sdk_INSTALL_INCLUDEDIR}")
+    PUBLIC_HEADER DESTINATION "${livox_sdk_INSTALL_INCLUDEDIR}"
+    INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 
 # Copy the package config file to the install location and give it the correct name
 install(FILES ../cmake/install-config.cmake
