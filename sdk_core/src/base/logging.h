@@ -24,9 +24,6 @@
 
 #ifndef LIVOX_LOGGING_H_
 #define LIVOX_LOGGING_H_
-#include "../include/third_party/spdlog/spdlog/spdlog.h"
-#include "../include/third_party/spdlog/spdlog/sinks/stdout_color_sinks.h"
-#include "../include/third_party/spdlog/spdlog/sinks/rotating_file_sink.h"
 
 #ifdef _WIN32
 #define __FILENAME__ (strrchr(__FILE__, '\\') ? (strrchr(__FILE__, '\\') + 1):__FILE__)
@@ -49,18 +46,17 @@
 #define SPDLOG_DEBUG_ON
 #endif
 
-extern std::shared_ptr<spdlog::logger> logger;
 extern bool is_save_log_file;
 extern bool is_console_log_enable;
 
 void InitLogger();
 void UninitLogger();
 
-#define LOG_TRACE(msg, ...) logger->trace(suffix(msg), ##__VA_ARGS__)
-#define LOG_DEBUG(msg, ...) logger->debug(suffix(msg), ##__VA_ARGS__)
-#define LOG_INFO(msg, ...) logger->info(suffix(msg), ##__VA_ARGS__)
-#define LOG_WARN(msg, ...) logger->warn(suffix(msg), ##__VA_ARGS__)
-#define LOG_ERROR(msg, ...) logger->error(suffix(msg), ##__VA_ARGS__)
-#define LOG_FATAL(msg, ...) logger->critical(suffix(msg), ##__VA_ARGS__)
+#define LOG_TRACE(msg, ...)
+#define LOG_DEBUG(msg, ...)
+#define LOG_INFO(msg, ...)
+#define LOG_WARN(msg, ...)
+#define LOG_ERROR(msg, ...)
+#define LOG_FATAL(msg, ...)
 
 #endif  // LIVOX_LOGGING_H_

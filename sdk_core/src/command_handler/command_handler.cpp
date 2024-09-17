@@ -48,13 +48,13 @@ CommandHandler &command_handler() {
 uint16_t GetCommandTimeout(uint8_t command_set, uint8_t command_id) {
   switch (command_set) {
     case kCommandSetGeneral:
-      assert(command_id < sizeof(GeneralCommandTimeout));
+      //assert(command_id < sizeof(GeneralCommandTimeout));
       return GeneralCommandTimeout[command_id];
     case kCommandSetLidar:
-      assert(command_id < sizeof(LidarCommandTimeout));
+      //assert(command_id < sizeof(LidarCommandTimeout));
       return LidarCommandTimeout[command_id];
     case kCommandSetHub:
-      assert(command_id < sizeof(HubCommandTimeout));
+      //assert(command_id < sizeof(HubCommandTimeout));
       return HubCommandTimeout[command_id];
   }
   return KDefaultTimeOut;
